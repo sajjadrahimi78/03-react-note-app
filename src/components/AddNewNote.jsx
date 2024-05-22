@@ -1,14 +1,15 @@
 import { useState } from "react";
 
-function AddNewNote({ onAddNote }) {
-  const [title, setTtile] = useState("");
+function AddNewNote() {
+  // states
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  // functions
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title || !description) return null;
-
+    // note object
     const newNote = {
       title,
       description,
@@ -16,28 +17,29 @@ function AddNewNote({ onAddNote }) {
       completed: false,
       createdAt: new Date().toISOString(),
     };
-    onAddNote(newNote);
-    setTtile("");
+
+    // reset inputs
+    setTitle("");
     setDescription("");
   };
 
   return (
     <div className="add-new-note">
       <h2>Add New Note</h2>
-      <form className="note-form" onSubmit={handleSubmit}>
+      <form action="" className="note-form" onSubmit={handleSubmit}>
         <input
-          value={title}
-          onChange={(e) => setTtile(e.target.value)}
           type="text"
           className="text-field"
-          placeholder="Note title"
+          placeholder="note title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
           type="text"
           className="text-field"
-          placeholder="Note description"
+          placeholder="note description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <button type="submit" className="btn btn--primary">
           Add New Note
