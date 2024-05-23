@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AddNewNote() {
+function AddNewNote( {onAddNote} ) {
   // states
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -8,6 +8,8 @@ function AddNewNote() {
   // functions
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!title || !description) return null;
 
     // note object
     const newNote = {
@@ -22,7 +24,7 @@ function AddNewNote() {
     setTitle("");
     setDescription("");
 
-    setNotes((prevNotes) => [...prevNotes, newNote]);
+    onAddNote(newNote)
   };
 
   return (
