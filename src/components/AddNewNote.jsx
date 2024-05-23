@@ -21,6 +21,8 @@ function AddNewNote() {
     // reset inputs
     setTitle("");
     setDescription("");
+
+    setNotes((prevNotes) => [...prevNotes, newNote]);
   };
 
   return (
