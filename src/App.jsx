@@ -18,7 +18,23 @@ function App() {
     // setNotes(filteredNotes);
 
     // callback way
-    setNotes(privNotes => privNotes.filter(n => n.id !== id))
+    setNotes((privNotes) => privNotes.filter((n) => n.id !== id));
+  };
+
+  const handleCompleteNote = (e) => {
+    const noteId = +e.target.id;
+    // first way -> use map method to unmutate array
+    // const newNotes = notes.map((note) =>
+    //   note.id === noteId ? { ...note, completed: !note.completed } : note
+    // );
+    // setNotes(newNotes);
+
+    // callback way
+    setNotes((privNotes) =>
+      privNotes.map((note) =>
+        note.id === noteId ? { ...note, completed: !note.completed } : note
+      )
+    );
   };
 
   return (
@@ -27,7 +43,11 @@ function App() {
       <div className="note-app">
         <AddNewNote onAddNote={handleAddNote} />
         <div className="note-container">
-          <NoteList notes={notes} onDelete={handleDeleteNote} />
+          <NoteList
+            notes={notes}
+            onDelete={handleDeleteNote}
+            onComplete={handleCompleteNote}
+          />
         </div>
       </div>
     </div>
