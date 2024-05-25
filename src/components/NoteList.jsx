@@ -1,7 +1,25 @@
-function NoteList({ notes, onDelete, onComplete }) {
+function NoteList({ notes, onDelete, onComplete , sortBy }) {
+
+  // sort notes
+  let sortedNotes = notes;
+  //چون متد سورت میاد دیتا رو میوتیت میکنه و این قانون ری اکت رو دور میزنه پس باید از دیتا ی کپی بگیریم
+  if (sortBy === "earliest")
+    sortedNotes = [...notes].sort(
+      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+    );
+
+  if (sortBy === "latest")
+    sortedNotes = [...notes].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+  if (sortBy === "completed")
+    sortedNotes = [...notes].sort((a, b) => +a.completed - +b.completed);
+
+
   return (
     <div className="note-list">
-      {notes.map((note) => (
+      {sortedNotes.map((note) => (
         <NoteItem
           key={note.id}
           note={note}
