@@ -1,10 +1,19 @@
+import Message from "./Message";
+
 function NoteStatus({ notes }) {
   const allNotes = notes.length;
   const completedNotes = notes.filter((n) => n.completed).length;
   const openNotes = allNotes - completedNotes;
 
   // condition when no notes has already been added.
-  if (!allNotes) return <h2>No Notes has already been added.</h2>;
+  // chilren props
+  if (!allNotes)
+    return (
+      <Message>
+        <span>🤌 </span>
+        <span>No Notes has already been added.</span>
+      </Message>
+    );
 
   return (
     <ul className="note-status">
