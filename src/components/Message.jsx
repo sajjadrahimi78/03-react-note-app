@@ -3,5 +3,3 @@ function Message({ children }) {
 }
 
 export default Message;
-
-// children prop =>
