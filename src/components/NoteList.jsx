@@ -42,7 +42,7 @@ function NoteItem({ note, onDelete, onComplete }) {
 
   return (
     <div className={`note-item ${note.completed ? "completed" : ""}`}>
-      <din className="note-item__header">
+      <div className="note-item__header">
         <div>
           <p className="title">{note.title}</p>
           <p className="desc">{note.description}</p>
@@ -56,10 +56,10 @@ function NoteItem({ note, onDelete, onComplete }) {
             onChange={onComplete}
           />
         </div>
-      </din>
-      <din className="note-item__footer">
+      </div>
+      <div className="note-item__footer">
         {new Date(note.createdAt).toLocaleDateString("en-US", options)}
-      </din>
+      </div>
     </div>
   );
 }
