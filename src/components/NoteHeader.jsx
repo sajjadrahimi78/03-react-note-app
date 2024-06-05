@@ -1,5 +1,7 @@
+import { useNotes } from "../context/NoteContext";
 
-function NoteHeader({ notes, sortBy , onSort}) {
+function NoteHeader({ sortBy, onSort }) {
+  const notes = useNotes();
   const allNotes = notes.length;
 
   return (
